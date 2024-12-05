@@ -4,43 +4,29 @@ using namespace std;
 
 
 // } Driver Code Ends
-
 class Solution {
-    
-    public:
-    
+  public:
     void sort012(vector<int>& arr) {
-        
-        int n = arr.size();
-        
-        int low = 0, mid = 0;
-        int high = n - 1;
-        
-        // 0 ... low - 1 => 0's
-        // low .. mid - 1 => 1's
-        // mid .. high => unsorted
-        // high + 1 .. n => 2
-        while(mid <= high){
-            
-            if(arr[mid] == 0){
-                swap(arr[low], arr[mid]);
-                low++; mid++;
+        // code here
+        int z=0,o=0,h=arr.size()-1;
+        int i=0;
+        while(o<=h)
+        {
+            if(arr[o]==0)
+             {
+                 swap(arr[o],arr[z]);
+                 z++;
+                 o++; 
+             }
+            else if( arr[o]==1)
+            o++;
+            else if(arr[o]==2){
+                swap(arr[o],arr[h]);
+                h--;
             }
-            
-            else if(arr[mid] == 1){
-                mid++;
-            }
-            
-            else{
-                swap(arr[mid], arr[high]);
-                high--;
-            }
-            
         }
-    
     }
 };
-
 
 //{ Driver Code Starts.
 int main() {
@@ -68,6 +54,7 @@ int main() {
         }
 
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
