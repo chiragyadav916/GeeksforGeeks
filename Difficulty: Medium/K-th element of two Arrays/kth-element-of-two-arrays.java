@@ -13,19 +13,20 @@ class GFG {
             int k = Integer.parseInt(br.readLine().trim());
 
             String[] line1 = br.readLine().trim().split(" ");
-            int[] arr1 = new int[line1.length];
+            int[] a = new int[line1.length];
             for (int i = 0; i < line1.length; i++) {
-                arr1[i] = Integer.parseInt(line1[i]);
+                a[i] = Integer.parseInt(line1[i]);
             }
 
             String[] line2 = br.readLine().trim().split(" ");
-            int[] arr2 = new int[line2.length];
+            int[] b = new int[line2.length];
             for (int i = 0; i < line2.length; i++) {
-                arr2[i] = Integer.parseInt(line2[i]);
+                b[i] = Integer.parseInt(line2[i]);
             }
 
             Solution ob = new Solution();
-            System.out.println(ob.kthElement(k, arr1, arr2));
+            System.out.println(ob.kthElement(a, b, k));
+            System.out.println("~");
         }
     }
 }
@@ -36,36 +37,19 @@ class GFG {
 // User function Template for Java
 
 class Solution {
-    public long kthElement(int k, int arr1[], int arr2[]) {
-        int n = arr1.length, m = arr2.length;
-        ArrayList<Integer> list = new ArrayList<>();
-        int i = 0, j = 0;
-
-        // Loop for merging both arrays
-        while (i < n && j < m) {
-            if (arr1[i] < arr2[j]) {
-                list.add(arr1[i]);
-                i++;
+    public int kthElement(int a[], int b[], int k) {
+        int ai = 0;
+        int bi = 0; 
+        int value = -1;
+        for (int i = 0; i < k; i++) {
+            if (ai < a.length && (bi >= b.length || a[ai] <= b[bi])) {
+                value = a[ai];
+                ai++;
             } else {
-                list.add(arr2[j]);
-                j++;
+                value = b[bi];
+                bi++;
             }
         }
-        
-        // For remaining elements of arr1
-        while (i < n) {
-            list.add(arr1[i]);
-            i++;
-        }
-
-        // For remaining elements of arr2
-        while (j < m) {
-            list.add(arr2[j]);
-            j++;
-        }
-        
-        // Return the k-th element (1-based index)
-        return list.get(k - 1);
+        return value;
     }
-
 }
